@@ -15,7 +15,7 @@
    <recordTarget>
      <patientRole>
        <id root="2.16.840.1.113883.2.9.4.3.2" extension="{{cartella_codicefiscale}}" assigningAuthorityName="Ministero Economia e Finanze"/>
-       <patient> 
+       <patient>
          <name>
            <given>{{nome}}</given>
            <family>{{cognome}}</family>
@@ -39,13 +39,14 @@
    <custodian>
      <assignedCustodian>
        <representedCustodianOrganization>
-         <id root="2.16.840.1.113883.2.9.4.1.2" extension="{{cartella_presidio_codice}}" assigningAuthorityName="SSN-MIN SALUTE"/>
-         <name>{{cartella_presidio_descrizione}}</name>
+         <id root="2.16.840.1.113883.2.9.4.1.2" extension="{{presidio.codice}}" assigningAuthorityName="SSN-MIN SALUTE"/>
+         <name>{{presidio.descrizione}}</name>
          <addr>
-           <city>{{presidio-citta}}</city>
-           <postalCode>{{presidio-cap}}</postalCode>
-           <streetName>{{presidio-indirizzo}}</streetName>
-           <houseNumber>{{presidio-civico}}</houseNumber>
+           <city>{{presidio.citta}}</city>
+           <postalCode>{{presidio.cap}}</postalCode>
+           <streetName>{{presidio.indirizzo}}</streetName>
+           <houseNumber>{{presidio.civico}}</houseNumber>
+           <telecom>{{presidio.telefono}}</telecom>
            <country>Italia</country>
          </addr>
        </representedCustodianOrganization>
@@ -67,22 +68,22 @@
    </legalAuthenticator>
    <componentOf typeCode="COMP">
      <encompassingEncounter>
-       <id root="2.16.840.1.113883.2.9.2.{{cartella_presidio_codice}}.4.6" extension="{{cartella_sdo_codice}}" assigningAuthorityName="Presidio Ospedaliero" displayable="true"/>
+       <id root="2.16.840.1.113883.2.9.2.{{presidio.codice}}.4.6" extension="{{cartella_sdo_codice}}" assigningAuthorityName="Presidio Ospedaliero" displayable="true"/>
        <effectiveTime>
          <low value="{{cartella_dataricovero}}"/>
        </effectiveTime>
        <location>
          <healthCareFacility>
-           <code code="{{cartella_reparto_codice}}" codeSystem="2.16.840.1.113883.2.9.6.1.17" codeSystemName="Discipline AFO" displayName="{{reparto-descrizione}}"/>
+           <code code="{{cartella_reparto_codice}}" codeSystem="2.16.840.1.113883.2.9.6.1.17" codeSystemName="Discipline AFO" displayName="{{cartella_reparto-descrizione}}"/>
            <serviceProviderOrganization>
-             <id root="2.16.840.1.113883.2.9.4.1.2" extension="{{presidio-codice}}" assigningAuthorityName="SSN-MIN SALUTE"/>
-             <name>{{cartella_presidio_descrizione}}</name>
+             <id root="2.16.840.1.113883.2.9.4.1.2" extension="{{presidio.codice}}" assigningAuthorityName="SSN-MIN SALUTE"/>
+             <name>{{presidio.descrizione}}</name>
              <addr>
-               <city>{{presidio-citta}}</city>
-               <postalCode>{{presidio-cap}}</postalCode>
-               <streetName>{{presidio-indirizzo}}</streetName>
-               <houseNumber>{{presidio-civico}}</houseNumber>
-               <telecom>{{presidio-telefono}}</telecom>
+               <city>{{presidio.citta}}</city>
+               <postalCode>{{presidio.cap}}</postalCode>
+               <streetName>{{presidio.indirizzo}}</streetName>
+               <houseNumber>{{presidio.civico}}</houseNumber>
+               <telecom>{{presidio.telefono}}</telecom>
                <country>Italia</country>
              </addr>
            </serviceProviderOrganization>

@@ -6,9 +6,17 @@
     [clj-time.format :as tformat]
     [clj-time.local :as tlocal]))
 
-(def presidio-sirai {:id 1 :codice "200098" :descrizione "P.O. SIRAI"})
-(def presidio-nsbn {:id 5 :codice "200034" :descrizione "P.O. N.S. DI BONARIA"})
-(def presidio-sbarbara {:id 2 :codice "200029" :descrizione "P.O. SANTA BARBARA"})
+(def presidio-sirai {:id 1 :codice "200098" :descrizione "P.O. SIRAI"
+                     :citta "Carbonia" :indirizzo "Via dell'Ospedale" :civico "" :cap "09013"})
+(def presidio-nsbn {:id 5 :codice "200034" :descrizione "P.O. N.S. DI BONARIA"
+                    :citta "San Gavino Monreale (SU)" :indirizzo "Via Roma" :civico "" :cap "09037"})
+(def presidio-sbarbara {:id 2 :codice "200029" :descrizione "P.O. SANTA BARBARA"
+                        :citta "Iglesias (SU)" :indirizzo "Via S. Leonardo" :civico "1" :cap "09016"})
+(def presidio-cto {:id 3 :codice "200030" :descrizione "P.O. CTO"
+                   :citta "Iglesias (SU)" :indirizzo "Via R. Cattaneo" :civico "52" :cap "09016"})
+
+
+
 
 (defn clean-codice-reparto [codice]
   (case codice

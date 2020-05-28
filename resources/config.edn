@@ -1,0 +1,5 @@
+{:cco-cda-template "hl7cda_cco_template.xml"
+ :medir-wsdl-url "https://fse.sardegnasalute.it/GatewayWS/asl7/wsdl/DocumentRepository/DocumentRepositoryService.wsdl"
+ :medir-wsdl-loc "/DocumentRepositoryService.wsdl"
+ :cert-pwd "ks-password"
+ :cert-path "E:/good-user.p12"}

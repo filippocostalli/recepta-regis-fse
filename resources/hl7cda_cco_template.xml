@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<ClinicalDocument
+   xsi:schemaLocation="urn:hl7-org:v3 CDA.xsd"
+   xmlns="urn:hl7-org:v3"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <realmCode code="IT"/>
+   <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+   <templateId root="2.16.840.1.xxxxxx.x.x.xx.x.xx"/>
+   <id root="2.16.840.1.113883.2.9.2.200.4.4" extension="{{cartella_barcode}}_{{cartella_id}}" assigningAuthorityName="Regione Sardegna"/>
+   <code code="46106-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Electronic Medical Record"/>
+   <effectiveTime value="{{data-compilazione}}"/>
+   <confidentialityCode codeSystem="2.16.840.1.113883.5.25" codeSystemName="Confidentiality" code="V"/>
+   <setId root="2.16.840.1.113883.2.9.2.200.4.4" extension="{{cartella_barcode}}_{{id-prec}}" assigningAuthorityName="Regione Sardegna"/>
+   <versionNumber value="1"/>
+   <recordTarget>
+     <patientRole>
+       <id root="2.16.840.1.113883.2.9.4.3.2" extension="{{cartella_codicefiscale}}" assigningAuthorityName="Ministero Economia e Finanze"/>
+       <patient>
+         <name>
+           <given>{{nome}}</given>
+           <family>{{cognome}}</family>
+         </name>
+         <administrativeGenderCode code="{{sesso}}" codeSystem= "2.16.840.1.113883.5.1"/>
+      </patient>
+     </patientRole>
+   </recordTarget>
+   <author>
+     <time value="{{cartella_datascansione}}"/>
+     <assignedAuthor>
+       <id assigningAuthorityName="MEF" extension="{{id-regis-asl}}" root="2.16.840.1.113883.2.9.4.3.2" />
+       <assignedPerson>
+         <name>
+           <given>SISTEMA DIGITALIZZAZIONE CARTELLE CLINICHE</given>
+           <family>ATS - {{asl-descrizione}}</family>
+         </name>
+       </assignedPerson>
+     </assignedAuthor>
+   </author>
+   <custodian>
+     <assignedCustodian>
+       <representedCustodianOrganization>
+         <id root="2.16.840.1.113883.2.9.4.1.2" extension="{{cartella_presidio_codice}}" assigningAuthorityName="SSN-MIN SALUTE"/>
+         <name>{{cartella_presidio_descrizione}}</name>
+         <addr>
+           <city>{{presidio-citta}}</city>
+           <postalCode>{{presidio-cap}}</postalCode>
+           <streetName>{{presidio-indirizzo}}</streetName>
+           <houseNumber>{{presidio-civico}}</houseNumber>
+           <country>Italia</country>
+         </addr>
+       </representedCustodianOrganization>
+     </assignedCustodian>
+   </custodian>
+   <legalAuthenticator>
+     <time value="{{dataora-firma}}"/>
+     <signatureCode code="S"/>
+     <assignedEntity>
+       <id root="2.16.840.1.113883.2.9.4.3.2" extension="{{id-regis-asl}}"/>
+       <assignedPerson>
+         <name>
+           <given>SISTEMA DIGITALIZZAZIONE CARTELLE CLINICHE</given>
+           <family>ATS - {{asl-descrizione}}</family>
+         </name>
+       </assignedPerson>
+       <signature/>
+     </assignedEntity>
+   </legalAuthenticator>
+   <componentOf typeCode="COMP">
+     <encompassingEncounter>
+       <id root="2.16.840.1.113883.2.9.2.{{cartella_presidio_codice}}.4.6" extension="{{cartella_sdo_codice}}" assigningAuthorityName="Presidio Ospedaliero" displayable="true"/>
+       <effectiveTime>
+         <low value="{{cartella_dataricovero}}"/>
+       </effectiveTime>
+       <location>
+         <healthCareFacility>
+           <code code="{{cartella_reparto_codice}}" codeSystem="2.16.840.1.113883.2.9.6.1.17" codeSystemName="Discipline AFO" displayName="{{reparto-descrizione}}"/>
+           <serviceProviderOrganization>
+             <id root="2.16.840.1.113883.2.9.4.1.2" extension="{{presidio-codice}}" assigningAuthorityName="SSN-MIN SALUTE"/>
+             <name>{{cartella_presidio_descrizione}}</name>
+             <addr>
+               <city>{{presidio-citta}}</city>
+               <postalCode>{{presidio-cap}}</postalCode>
+               <streetName>{{presidio-indirizzo}}</streetName>
+               <houseNumber>{{presidio-civico}}</houseNumber>
+               <telecom>{{presidio-telefono}}</telecom>
+               <country>Italia</country>
+             </addr>
+           </serviceProviderOrganization>
+         </healthCareFacility>
+       </location>
+     </encompassingEncounter>
+   </componentOf>
+   <!-- Body -->
+   <component>
+     <structuredBody>
+       <component typeCode="COMP">
+         <section classCode="DOCSECT" moodCode="EVN">
+           <code code="46106-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Tipo documento"/>
+           <entry>
+             <observationMedia classCode="OBS" moodCode="EVN">
+               <value xsi:type="ED" mediaType="text/html">
+                 <reference value="https://recepta.marnonet.it/SAML2/{{barcode}}?SP-ACS={{acs-endpoint}}"/>
+               </value>
+             </observationMedia>
+           </entry>
+         </section>
+       </component>
+     </structuredBody>
+   </component>
+</ClinicalDocument>

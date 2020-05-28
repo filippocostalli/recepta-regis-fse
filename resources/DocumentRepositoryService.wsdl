@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:bindings="urn:medir:gateway:documentRegistry:bindings:1.0" xmlns:types="urn:medir:gateway:documentRepository:types:1.0" xmlns:tns="urn:medir:gateway:documentRepository:service:1.0" xmlns:ns="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa10="http://www.w3.org/2005/08/addressing" name="DocumentRepositorySOAPService" targetNamespace="urn:medir:gateway:documentRepository:service:1.0">
+	<wsdl:types>
+		<xs:schema>
+			<xs:import namespace="urn:medir:gateway:documentRepository:types:1.0" schemaLocation="DocumentRepository.xsd"/>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="msgProvideDocumentRequest">
+		<wsdl:part name="partProvideDocumentRequest" element="types:ProvideDocumentRequest">
+			<wsdl:documentation>Documento in Base64</wsdl:documentation>
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="msgProvideDocumentResponse">
+		<wsdl:part name="partProvideDocumentResponse" element="types:ProvideDocumentResponse">
+			<wsdl:documentation>Id del documento registrato</wsdl:documentation>
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="msgRetrieveDocumentRequest">
+		<wsdl:part name="partRetrieveDocumentRequest" element="types:RetrieveDocumentRequest">
+			<wsdl:documentation>ID del documento da recuperare</wsdl:documentation>
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="msgRetrieveDocumentResponse">
+		<wsdl:part name="partRetrieveDocumentResponse" element="types:RetrieveDocumentResponse">
+			<wsdl:documentation>Documento in Base64</wsdl:documentation>
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="DocumentRepositoryPortType">
+		<wsdl:operation name="ProvideDocument">
+			<wsdl:documentation>Invia un Documento al Repository</wsdl:documentation>
+			<wsdl:input message="tns:msgProvideDocumentRequest"/>
+			<wsdl:output message="tns:msgProvideDocumentResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="RetrieveDocument">
+			<wsdl:documentation>Recupera il documento</wsdl:documentation>
+			<wsdl:input message="tns:msgRetrieveDocumentRequest"/>
+			<wsdl:output message="tns:msgRetrieveDocumentResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="DocumentRepositoryBinding_IssuedTokenForCertificateSecureConversationMutualCertificate11_policy" type="tns:DocumentRepositoryPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#IssuedTokenForCertificateSecureConversationMutualCertificate11_policy"/>
+		<wsdl:operation name="ProvideDocument">
+			<soap:operation soapAction="urn:medir:gateway:documentRepository:bindings:1.0:DocumentRepositoryPortType#ProvideDocument" style="document"/>
+			<wsdl:input>
+				<wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#Message_Policy"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#Message_Policy"/>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RetrieveDocument">
+			<soap:operation soapAction="urn:medir:gateway:documentRepository:bindings:1.0:DocumentRepositoryPortType#RetrieveDocument" style="document"/>
+			<wsdl:input>
+				<wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#Message_Policy"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#Message_Policy"/>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="DocumentRepositoryBinding_IssuedTokenForUsernameSecureConversationMutualCertificate11_policy" type="tns:DocumentRepositoryPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#IssuedTokenForUsernameSecureConversationMutualCertificate11_policy"/>
+		<wsdl:operation name="ProvideDocument">
+			<soap:operation soapAction="urn:medir:gateway:documentRepository:bindings:1.0:DocumentRepositoryPortType#ProvideDocument" style="document"/>
+			<wsdl:input>
+				<wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#Message_Policy"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#Message_Policy"/>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RetrieveDocument">
+			<soap:operation soapAction="urn:medir:gateway:documentRepository:bindings:1.0:DocumentRepositoryPortType#RetrieveDocument" style="document"/>
+			<wsdl:input>
+				<wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#Message_Policy"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#Message_Policy"/>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="DocumentRepositorySOAPService">
+		<wsdl:documentation>Servizio di accesso al Document Repository</wsdl:documentation>
+		<wsdl:port name="DocumentRepositoryPort_IssuedTokenForCertificateSecureConversationMutualCertificate11_policy" binding="tns:DocumentRepositoryBinding_IssuedTokenForCertificateSecureConversationMutualCertificate11_policy">
+			<soap:address location="https://fse.sardegnasalute.it/GatewayWS/asl7/Service.svc/DocumentRepository/saml"/>
+			<wsa10:EndpointReference>
+				<wsa10:Address>https://fse.sardegnasalute.it/GatewayWS/asl7/Service.svc/DocumentRepository/saml</wsa10:Address>
+				<Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+					<Dns>fse.sardegnasalute.it</Dns>
+				</Identity>
+			</wsa10:EndpointReference>
+		</wsdl:port>
+		<wsdl:port name="DocumentRepositoryPort_IssuedTokenForUsernameSecureConversationMutualCertificate11_policy" binding="tns:DocumentRepositoryBinding_IssuedTokenForUsernameSecureConversationMutualCertificate11_policy">
+			<soap:address location="https://fse.sardegnasalute.it/GatewayWS/asl7/Service.svc/DocumentRepository/saml"/>
+			<wsa10:EndpointReference>
+				<wsa10:Address>https://fse.sardegnasalute.it/GatewayWS/asl7/Service.svc/DocumentRepository/saml</wsa10:Address>
+				<Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+					<Dns>fse.sardegnasalute.it</Dns>
+				</Identity>
+			</wsa10:EndpointReference>
+		</wsdl:port>
+	</wsdl:service>
+	<wsp:Policy xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" wsu:Id="IssuedTokenForCertificateSecureConversationMutualCertificate11_policy">
+		<wsp:ExactlyOne>
+			<wsp:All>
+				<sp:SymmetricBinding xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+					<wsp:Policy>
+						<sp:ProtectionToken>
+							<wsp:Policy>
+								<sp:SecureConversationToken sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient">
+									<wsp:Policy>
+										<sp:BootstrapPolicy>
+											<wsp:Policy>
+												<sp:SignedParts>
+													<sp:Body/>
+													<sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing"/>
+													<sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing"/>
+													<sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+													<sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+													<sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing"/>
+													<sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+													<sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing"/>
+												</sp:SignedParts>
+												<sp:EncryptedParts>
+													<sp:Body/>
+												</sp:EncryptedParts>
+												<sp:SymmetricBinding>
+													<wsp:Policy>
+														<sp:ProtectionToken>
+															<wsp:Policy>
+																<sp:X509Token sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/Never">
+																	<wsp:Policy>
+																		<sp:RequireThumbprintReference/>
+																		<sp:WssX509V3Token10/>
+																	</wsp:Policy>
+																</sp:X509Token>
+															</wsp:Policy>
+														</sp:ProtectionToken>
+														<sp:AlgorithmSuite>
+															<wsp:Policy>
+																<sp:Basic256/>
+															</wsp:Policy>
+														</sp:AlgorithmSuite>
+														<sp:Layout>
+															<wsp:Policy>
+																<sp:Strict/>
+															</wsp:Policy>
+														</sp:Layout>
+														<sp:IncludeTimestamp/>
+														<sp:OnlySignEntireHeadersAndBody/>
+													</wsp:Policy>
+												</sp:SymmetricBinding>
+												<sp:EndorsingSupportingTokens>
+													<wsp:Policy>
+														<sp:IssuedToken sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient">
+															<Issuer xmlns="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+																  <Address xmlns="http://www.w3.org/2005/08/addressing"> https://fse.sardegnasalute.it/SecurityTokenServiceWS/asl7/SecurityTokenService.svc/x509</Address>
+																<Metadata xmlns="http://www.w3.org/2005/08/addressing">
+																	<Metadata xmlns="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+																		<wsx:MetadataSection xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex">
+																			<wsx:MetadataReference>
+																				<Address xmlns="http://www.w3.org/2005/08/addressing"> https://fse.sardegnasalute.it/SecurityTokenServiceWS/asl7/SecurityTokenService.svc/mex</Address>
+																			</wsx:MetadataReference>
+																		</wsx:MetadataSection>
+																	</Metadata>
+																</Metadata>
+																<Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+																	<Dns>fse.sardegnasalute.it</Dns>
+																</Identity>
+															</Issuer>
+															<sp:RequestSecurityTokenTemplate>
+																<t:TokenType xmlns:t="http://docs.oasis-open.org/ws-sx/ws-trust/200512">http://docs.oasis-open.org/wss/oasis-wss-saml-token-profile-1.1#SAMLV1.1</t:TokenType>
+																<t:KeyType xmlns:t="http://docs.oasis-open.org/ws-sx/ws-trust/200512">http://docs.oasis-open.org/ws-sx/ws-trust/200512/SymmetricKey</t:KeyType>
+																<t:KeySize xmlns:t="http://docs.oasis-open.org/ws-sx/ws-trust/200512">256</t:KeySize>
+															</sp:RequestSecurityTokenTemplate>
+															<wsp:Policy>
+																<sp:RequireInternalReference/>
+															</wsp:Policy>
+														</sp:IssuedToken>
+													</wsp:Policy>
+												</sp:EndorsingSupportingTokens>
+												<sp:Wss11>
+													<wsp:Policy>
+														<sp:MustSupportRefKeyIdentifier/>
+														<sp:MustSupportRefIssuerSerial/>
+														<sp:MustSupportRefThumbprint/>
+														<sp:MustSupportRefEncryptedKey/>
+													</wsp:Policy>
+												</sp:Wss11>
+												<sp:Trust13>
+													<wsp:Policy>
+														<sp:MustSupportIssuedTokens/>
+														<sp:RequireClientEntropy/>
+														<sp:RequireServerEntropy/>
+													</wsp:Policy>
+												</sp:Trust13>
+											</wsp:Policy>
+										</sp:BootstrapPolicy>
+									</wsp:Policy>
+								</sp:SecureConversationToken>
+							</wsp:Policy>
+						</sp:ProtectionToken>
+						<sp:AlgorithmSuite>
+							<wsp:Policy>
+								<sp:Basic256/>
+							</wsp:Policy>
+						</sp:AlgorithmSuite>
+						<sp:Layout>
+							<wsp:Policy>
+								<sp:Strict/>
+							</wsp:Policy>
+						</sp:Layout>
+						<sp:IncludeTimestamp/>
+						<sp:OnlySignEntireHeadersAndBody/>
+					</wsp:Policy>
+				</sp:SymmetricBinding>
+				<sp:SignedEndorsingSupportingTokens xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+					<wsp:Policy>
+						<sp:X509Token sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient" wsp:Optional="true">
+							<wst:Claims xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512" Dialect="urn:medir:gateway">urn:medir:gateway#PatientX509Certificate</wst:Claims>
+							<wsp:Policy>
+								<sp:RequireKeyIdentifierReference/>
+								<sp:WssX509V3Token10/>
+							</wsp:Policy>
+						</sp:X509Token>
+					</wsp:Policy>
+				</sp:SignedEndorsingSupportingTokens>
+				<sp:Wss11 xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+					<wsp:Policy>
+						<sp:MustSupportRefKeyIdentifier/>
+						<sp:MustSupportRefIssuerSerial/>
+						<sp:MustSupportRefThumbprint/>
+						<sp:MustSupportRefEncryptedKey/>
+					</wsp:Policy>
+				</sp:Wss11>
+				<sp:Trust13 xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+					<wsp:Policy>
+						<sp:MustSupportIssuedTokens/>
+						<sp:RequireClientEntropy/>
+						<sp:RequireServerEntropy/>
+					</wsp:Policy>
+				</sp:Trust13>
+				<wsaw:UsingAddressing/>
+			</wsp:All>
+		</wsp:ExactlyOne>
+	</wsp:Policy>
+	<wsp:Policy xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" wsu:Id="IssuedTokenForUsernameSecureConversationMutualCertificate11_policy">
+		<wsp:ExactlyOne>
+			<wsp:All>
+				<sp:SymmetricBinding xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+					<wsp:Policy>
+						<sp:ProtectionToken>
+							<wsp:Policy>
+								<sp:SecureConversationToken sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient">
+									<wsp:Policy>
+										<sp:BootstrapPolicy>
+											<wsp:Policy>
+												<sp:SignedParts>
+													<sp:Body/>
+													<sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing"/>
+													<sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing"/>
+													<sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+													<sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+													<sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing"/>
+													<sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+													<sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing"/>
+												</sp:SignedParts>
+												<sp:EncryptedParts>
+													<sp:Body/>
+												</sp:EncryptedParts>
+												<sp:SymmetricBinding>
+													<wsp:Policy>
+														<sp:ProtectionToken>
+															<wsp:Policy>
+																<sp:X509Token sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/Never">
+																	<wsp:Policy>
+																		<sp:RequireThumbprintReference/>
+																		<sp:WssX509V3Token10/>
+																	</wsp:Policy>
+																</sp:X509Token>
+															</wsp:Policy>
+														</sp:ProtectionToken>
+														<sp:AlgorithmSuite>
+															<wsp:Policy>
+																<sp:Basic256/>
+															</wsp:Policy>
+														</sp:AlgorithmSuite>
+														<sp:Layout>
+															<wsp:Policy>
+																<sp:Strict/>
+															</wsp:Policy>
+														</sp:Layout>
+														<sp:IncludeTimestamp/>
+														<sp:OnlySignEntireHeadersAndBody/>
+													</wsp:Policy>
+												</sp:SymmetricBinding>
+												<sp:EndorsingSupportingTokens>
+													<wsp:Policy>
+														<sp:IssuedToken sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient">
+															<Issuer xmlns="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+																<Address xmlns="http://www.w3.org/2005/08/addressing">
+																	https://fse.sardegnasalute.it/SecurityTokenServiceWS/asl7/SecurityTokenService.svc/user</Address>
+																<Metadata xmlns="http://www.w3.org/2005/08/addressing">
+																	<Metadata xmlns="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+																		<wsx:MetadataSection xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex">
+																			<wsx:MetadataReference>
+																				<Address xmlns="http://www.w3.org/2005/08/addressing"> 
+																					https://fse.sardegnasalute.it/SecurityTokenServiceWS/asl7/SecurityTokenService.svc/mex</Address>
+																			</wsx:MetadataReference>
+																		</wsx:MetadataSection>
+																	</Metadata>
+																</Metadata>
+																<Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+																	<Dns>fse.sardegnasalute.it</Dns>
+																</Identity>
+															</Issuer>
+															<sp:RequestSecurityTokenTemplate>
+																<t:TokenType xmlns:t="http://docs.oasis-open.org/ws-sx/ws-trust/200512">http://docs.oasis-open.org/wss/oasis-wss-saml-token-profile-1.1#SAMLV1.1</t:TokenType>
+																<t:KeyType xmlns:t="http://docs.oasis-open.org/ws-sx/ws-trust/200512">http://docs.oasis-open.org/ws-sx/ws-trust/200512/SymmetricKey</t:KeyType>
+																<t:KeySize xmlns:t="http://docs.oasis-open.org/ws-sx/ws-trust/200512">256</t:KeySize>
+															</sp:RequestSecurityTokenTemplate>
+															<wsp:Policy>
+																<sp:RequireInternalReference/>
+															</wsp:Policy>
+														</sp:IssuedToken>
+													</wsp:Policy>
+												</sp:EndorsingSupportingTokens>
+												<sp:Wss11>
+													<wsp:Policy>
+														<sp:MustSupportRefKeyIdentifier/>
+														<sp:MustSupportRefIssuerSerial/>
+														<sp:MustSupportRefThumbprint/>
+														<sp:MustSupportRefEncryptedKey/>
+													</wsp:Policy>
+												</sp:Wss11>
+												<sp:Trust13>
+													<wsp:Policy>
+														<sp:MustSupportIssuedTokens/>
+														<sp:RequireClientEntropy/>
+														<sp:RequireServerEntropy/>
+													</wsp:Policy>
+												</sp:Trust13>
+											</wsp:Policy>
+										</sp:BootstrapPolicy>
+									</wsp:Policy>
+								</sp:SecureConversationToken>
+							</wsp:Policy>
+						</sp:ProtectionToken>
+						<sp:AlgorithmSuite>
+							<wsp:Policy>
+								<sp:Basic256/>
+							</wsp:Policy>
+						</sp:AlgorithmSuite>
+						<sp:Layout>
+							<wsp:Policy>
+								<sp:Strict/>
+							</wsp:Policy>
+						</sp:Layout>
+						<sp:IncludeTimestamp/>
+						<sp:OnlySignEntireHeadersAndBody/>
+					</wsp:Policy>
+				</sp:SymmetricBinding>
+				<sp:SignedEndorsingSupportingTokens xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+					<wsp:Policy>
+						<sp:X509Token sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient" wsp:Optional="true">
+							<wst:Claims xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512" Dialect="urn:medir:gateway">urn:medir:gateway#PatientX509Certificate</wst:Claims>
+							<wsp:Policy>
+								<sp:RequireKeyIdentifierReference/>
+								<sp:WssX509V3Token10/>
+							</wsp:Policy>
+						</sp:X509Token>
+					</wsp:Policy>
+				</sp:SignedEndorsingSupportingTokens>
+				<sp:Wss11 xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+					<wsp:Policy>
+						<sp:MustSupportRefKeyIdentifier/>
+						<sp:MustSupportRefIssuerSerial/>
+						<sp:MustSupportRefThumbprint/>
+						<sp:MustSupportRefEncryptedKey/>
+					</wsp:Policy>
+				</sp:Wss11>
+				<sp:Trust13 xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+					<wsp:Policy>
+						<sp:MustSupportIssuedTokens/>
+						<sp:RequireClientEntropy/>
+						<sp:RequireServerEntropy/>
+					</wsp:Policy>
+				</sp:Trust13>
+				<wsaw:UsingAddressing/>
+			</wsp:All>
+		</wsp:ExactlyOne>
+	</wsp:Policy>
+	<wsp:Policy xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" wsu:Id="Message_Policy">
+		<wsp:ExactlyOne>
+			<wsp:All>
+				<sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+					<sp:Body/>
+					<sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing"/>
+					<sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing"/>
+					<sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+					<sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+					<sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing"/>
+					<sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+					<sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing"/>
+				</sp:SignedParts>
+				<sp:EncryptedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+					<sp:Body/>
+				</sp:EncryptedParts>
+			</wsp:All>
+		</wsp:ExactlyOne>
+	</wsp:Policy>
+</wsdl:definitions>

@@ -4,6 +4,7 @@
      [recepta-regis-fse.services.database :as database]
      [recepta-regis-fse.services.hl7cda :as hl7cda]
      [recepta-regis-fse.services.xades :as xades]
+     [recepta-regis-fse.services.xades-mul :as xades-mul]
      [clojure.string :as s]
      [clojure.java.io :as io]))
 
@@ -54,5 +55,14 @@
         mycda (hl7cda/cartella->cda cartella)
         mycda_signed (xades/sign mycda)
         filename (str "E:/tmp/Recepta/Regis/Fse/test-cda/test_" (:cartella_id cartella) "_" (:cartella_barcode cartella) "_signed.xml")]
+     (spit filename mycda_signed)
+     (is (.exists (io/as-file filename)))))
+
+(deftest cda-sign-mul
+  (let [cartelle (database/get-cartelle)
+        cartella (first cartelle)
+        mycda (hl7cda/cartella->cda cartella)
+        mycda_signed (xades-mul/sign mycda (:cartella_presidio_id cartella))
+        filename (str "E:/tmp/Recepta/Regis/Fse/test-cda/test_" (:cartella_id cartella) "_" (:cartella_barcode cartella) "_signedmul.xml")]
      (spit filename mycda_signed)
      (is (.exists (io/as-file filename)))))

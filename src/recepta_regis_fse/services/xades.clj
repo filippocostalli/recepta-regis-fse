@@ -36,7 +36,7 @@
   (.. signing-token getKeys (get 0)))
 
 (def ^XAdESSignatureParameters xades-params
-  (let [par (XAdESSignatureParameters.)] 
+  (let [par (XAdESSignatureParameters.)]
     (doto par
       (.setSignatureLevel SignatureLevel/XAdES_BASELINE_B)
       (.setSignaturePackaging SignaturePackaging/ENVELOPED)
@@ -44,7 +44,7 @@
       (.setSigningCertificate (.getCertificate private-key))
       (.setCertificateChain (.getCertificateChain private-key))
       (.setXPathLocationString "//*[local-name() = 'signatureCode']")
-      (.setXPathElementPlacement (.. XAdESSignatureParameters XPathElementPlacement XPathAfter)))))
+      (.setXPathElementPlacement  XAdESSignatureParameters$XPathElementPlacement/XPathAfter))))
 
 (def not-nil? (complement nil?))
 

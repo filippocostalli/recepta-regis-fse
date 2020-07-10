@@ -1,22 +1,18 @@
 (ns recepta-regis-fse.services.hl7cda
   (:require
     [recepta-regis-fse.configuration :as conf]
-    [selmer.parser :as parser]
-    [clj-time.core :as tcore]
-    [clj-time.format :as tformat]
-    [clj-time.local :as tlocal]))
+    [selmer.parser :as parser]))
 
-(def presidio-sirai {:id 1 :codice "200098" :descrizione "P.O. SIRAI"
-                     :citta "Carbonia" :indirizzo "Via dell'Ospedale" :civico "" :cap "09013"})
-(def presidio-nsbn {:id 5 :codice "200034" :descrizione "P.O. N.S. DI BONARIA"
-                    :citta "San Gavino Monreale (SU)" :indirizzo "Via Roma" :civico "" :cap "09037"})
-(def presidio-sbarbara {:id 2 :codice "200029" :descrizione "P.O. SANTA BARBARA"
-                        :citta "Iglesias (SU)" :indirizzo "Via S. Leonardo" :civico "1" :cap "09016"})
-(def presidio-cto {:id 3 :codice "200030" :descrizione "P.O. CTO"
-                   :citta "Iglesias (SU)" :indirizzo "Via R. Cattaneo" :civico "52" :cap "09016"})
+(def presidio-1 {:id 1 :codice "200098" :descrizione "P.O. SIRAI"
+                 :citta "Carbonia" :indirizzo "Via dell'Ospedale" :civico "" :cap "09013" :asl "ASSL CARBONIA" :id-marno-asl "200107"})
+(def presidio-5 {:id 5 :codice "200034" :descrizione "P.O. N.S. DI BONARIA"
+                 :citta "San Gavino Monreale (SU)" :indirizzo "Via Roma" :civico "" :cap "09037" :asl "ASSL SANLURI" :id-marno-asl "200106"})
+(def presidio-2 {:id 2 :codice "200029" :descrizione "P.O. SANTA BARBARA"
+                 :citta "Iglesias (SU)" :indirizzo "Via S. Leonardo" :civico "1" :cap "09016" :asl "ASSL CARBONIA" :id-marno-asl "200107"})
+(def presidio-3 {:id 3 :codice "200030" :descrizione "P.O. CTO"
+                 :citta "Iglesias (SU)" :indirizzo "Via R. Cattaneo" :civico "52" :cap "09016" :asl "ASSL CARBONIA" :id-marno-asl "200107"})
 
-
-
+(def presidi {:1 presidio-1, :2 presidio-2, :3 presidio-3 :5 presidio-5})
 
 (defn clean-codice-reparto [codice]
   (case codice
@@ -26,34 +22,23 @@
     901 "0901"
     codice))
 
-(defn string->date [s] (tformat/parse s))
+(defn date->cdatime [date]
+  (str
+    (.format (java.text.SimpleDateFormat. "yyyyMMddHHmmss") date)
+    (.format (java.text.SimpleDateFormat. "Z") date)))
 
-(def cda-format (tformat/formatter "yyyyMMdd"))
+(defn date->time-nooffset [date]
+    (.format (java.text.SimpleDateFormat. "yyyyMMddHHmmss") date))
 
-(def custom-time-formatter
-  (tformat/with-zone (tformat/formatter "yyyyMMddHHmmssZz")
-                     (tcore/time-zone-for-id "Europe/Rome")))
-
-(defn get-cdatime [s]
-  (tformat/unparse
-    cda-format
-    (string->date s)))
-
-(def mock-cco-map
-  {:id "a125"
-   :setid "a125"
-   :version 2
-   :effectivetime 12
-   :patient
-      {:fiscalcode "CSTFPP70E29G702H"
-       :given "FILIPPO"
-       :family "COSTALLI"}})
-
-
-
-
-(defn generate
-  [data-map]
-  (parser/render-file
-     (:cco-cda-template conf/configuration)
-     data-map))
+(defn cartella->cda
+  [cartella]
+  (let [presidio ((keyword (str (:cartella_presidio_id cartella))) presidi)]
+    (parser/render-file
+       (:cco-cda-template conf/configuration)
+       (-> cartella
+         (assoc :presidio presidio)
+         (assoc :data-compilazione (date->cdatime (java.util.Date.)))
+         (assoc :data-produzione (date->cdatime (:cartella_datascansione cartella)))
+         (assoc :data-firma (date->cdatime (java.util.Date.)))
+         (assoc :data-ricovero (date->time-nooffset (:cartella_dataricovero cartella)))
+         (assoc :cartella-endpoint "regis/consultaCartella")))))

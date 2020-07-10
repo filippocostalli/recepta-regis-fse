@@ -8,6 +8,8 @@
                  [selmer "1.12.24"]
                  [clj-time "0.15.2"]
                  [clj-http "3.10.1"]
+                 [org.clojure/java.jdbc "0.7.11"]
+                 [org.postgresql/postgresql "42.2.9"]
                  [eu.europa.ec.joinup.sd-dss/dss-enumerations "5.6"]
                  [eu.europa.ec.joinup.sd-dss/dss-jaxb-parsers "5.6"]
                  [eu.europa.ec.joinup.sd-dss/dss-utils "5.6"]

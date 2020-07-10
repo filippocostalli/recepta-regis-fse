@@ -17,21 +17,21 @@
        <id root="2.16.840.1.113883.2.9.4.3.2" extension="{{cartella_codicefiscale}}" assigningAuthorityName="Ministero Economia e Finanze"/>
        <patient>
          <name>
-           <given>{{nome}}</given>
-           <family>{{cognome}}</family>
+           <given>{{cartella_nome}}</given>
+           <family>{{cartella_cognome}}</family>
          </name>
-         <administrativeGenderCode code="{{sesso}}" codeSystem= "2.16.840.1.113883.5.1"/>
+         <administrativeGenderCode code="{{cartella_genere}}" codeSystem= "2.16.840.1.113883.5.1"/>
       </patient>
      </patientRole>
    </recordTarget>
    <author>
-     <time value="{{cartella_datascansione}}"/>
+     <time value="{{data-produzione}}"/>
      <assignedAuthor>
-       <id assigningAuthorityName="MEF" extension="{{id-regis-asl}}" root="2.16.840.1.113883.2.9.4.3.2" />
+       <id assigningAuthorityName="MEF" extension="{{presidio.id-marno-asl}} {{presidio.asl}}" root="2.16.840.1.113883.2.9.4.3.2" />
        <assignedPerson>
          <name>
            <given>SISTEMA DIGITALIZZAZIONE CARTELLE CLINICHE</given>
-           <family>ATS - {{asl-descrizione}}</family>
+           <family>ATS - {{presidio.asl}}</family>
          </name>
        </assignedPerson>
      </assignedAuthor>
@@ -53,14 +53,14 @@
      </assignedCustodian>
    </custodian>
    <legalAuthenticator>
-     <time value="{{dataora-firma}}"/>
+     <time value="{{data-firma}}"/>
      <signatureCode code="S"/>
      <assignedEntity>
-       <id root="2.16.840.1.113883.2.9.4.3.2" extension="{{id-regis-asl}}"/>
+       <id root="2.16.840.1.113883.2.9.4.3.2" extension="{{presidio.id-marno-asl}}"/>
        <assignedPerson>
          <name>
            <given>SISTEMA DIGITALIZZAZIONE CARTELLE CLINICHE</given>
-           <family>ATS - {{asl-descrizione}}</family>
+           <family>ATS - {{presidio.asl}}</family>
          </name>
        </assignedPerson>
        <signature/>
@@ -70,11 +70,11 @@
      <encompassingEncounter>
        <id root="2.16.840.1.113883.2.9.2.{{presidio.codice}}.4.6" extension="{{cartella_sdo_codice}}" assigningAuthorityName="Presidio Ospedaliero" displayable="true"/>
        <effectiveTime>
-         <low value="{{cartella_dataricovero}}"/>
+         <low value="{{data-ricovero}}"/>
        </effectiveTime>
        <location>
          <healthCareFacility>
-           <code code="{{cartella_reparto_codice}}" codeSystem="2.16.840.1.113883.2.9.6.1.17" codeSystemName="Discipline AFO" displayName="{{cartella_reparto-descrizione}}"/>
+           <code code="{{cartella_reparto_codice}}" codeSystem="2.16.840.1.113883.2.9.6.1.17" codeSystemName="Discipline AFO" displayName="{{cartella_reparto_descrizione}}"/>
            <serviceProviderOrganization>
              <id root="2.16.840.1.113883.2.9.4.1.2" extension="{{presidio.codice}}" assigningAuthorityName="SSN-MIN SALUTE"/>
              <name>{{presidio.descrizione}}</name>
@@ -100,7 +100,7 @@
            <entry>
              <observationMedia classCode="OBS" moodCode="EVN">
                <value xsi:type="ED" mediaType="text/html">
-                 <reference value="https://recepta.marnonet.it/SAML2/{{barcode}}?SP-ACS={{acs-endpoint}}"/>
+                 <reference value="https://recepta.marnonet.it/SAML2/medir/{{cartella_barcode}}?SP-ACS={{cartella-endpoint}}"/>
                </value>
              </observationMedia>
            </entry>

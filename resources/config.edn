@@ -1,5 +1,17 @@
 {:cco-cda-template "hl7cda_cco_template.xml"
- :medir-wsdl-url "https://fse.sardegnasalute.it/GatewayWS/asl7/wsdl/DocumentRepository/DocumentRepositoryService.wsdl"
- :medir-wsdl-loc "/DocumentRepositoryService.wsdl"
- :cert-pwd "ks-password"
- :cert-path "E:/good-user.p12"}
+ :cert-pwd "Sfw020mrn"
+ :cert-path "E:/tmp/Recepta/Regis/Fse/certificati_medir_marno/SWmarnoASSLCarbonia.pfx"
+ :certificates { :1 {:cert-pwd "Sfw020mrn"
+                     :cert-path "E:/tmp/Recepta/Regis/Fse/certificati_medir_marno/SWmarnoASSLCarbonia.pfx"}
+                 :2 {:cert-pwd "Sfw020mrn"
+                     :cert-path "E:/tmp/Recepta/Regis/Fse/certificati_medir_marno/SWmarnoASSLCarbonia.pfx"}
+                 :3 {:cert-pwd "Sfw020mrn"
+                     :cert-path "E:/tmp/Recepta/Regis/Fse/certificati_medir_marno/SWmarnoASSLCarbonia.pfx"}
+                 :5 {:cert-pwd "Sfw020mrn"
+                     :cert-path "E:/tmp/Recepta/Regis/Fse/certificati_medir_marno/SWmarnoASSLSanluri.pfx"}}
+ :regis-db {:dbtype "postgresql"
+            :dbname "recepta_regis"
+            :host "10.10.117.5"
+            :user "postgres"
+            :password "marno"
+            :sslfactory "org.postgresql.ssl.NonValidatingFactory"}}

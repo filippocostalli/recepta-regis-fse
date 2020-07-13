@@ -1,6 +1,6 @@
 {:cco-cda-template "hl7cda_cco_template.xml"
  :cert-pwd "Sfw020mrn"
- :cert-path "E:/tmp/Recepta/Regis/Fse/certificati_medir_marno/SWmarnoASSLCarbonia.pfx"
+ :cert-path "E:/tmp/Recepta/Regis/Fse/certificati_medir_marno/SWmarnoASSLSanluri.pfx"
  :certificates { :1 {:cert-pwd "Sfw020mrn"
                      :cert-path "E:/tmp/Recepta/Regis/Fse/certificati_medir_marno/SWmarnoASSLCarbonia.pfx"}
                  :2 {:cert-pwd "Sfw020mrn"
@@ -10,7 +10,7 @@
                  :5 {:cert-pwd "Sfw020mrn"
                      :cert-path "E:/tmp/Recepta/Regis/Fse/certificati_medir_marno/SWmarnoASSLSanluri.pfx"}}
  :regis-db {:dbtype "postgresql"
-            :dbname "recepta_regis"
+            :dbname "recepta_regis_fse"
             :host "10.10.117.5"
             :user "postgres"
             :password "marno"

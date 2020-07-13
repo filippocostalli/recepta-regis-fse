@@ -46,7 +46,7 @@
            <postalCode>{{presidio.cap}}</postalCode>
            <streetName>{{presidio.indirizzo}}</streetName>
            <houseNumber>{{presidio.civico}}</houseNumber>
-           <telecom>{{presidio.telefono}}</telecom>
+           <!--telecom></telecom-->
            <country>Italia</country>
          </addr>
        </representedCustodianOrganization>
@@ -63,7 +63,6 @@
            <family>ATS - {{presidio.asl}}</family>
          </name>
        </assignedPerson>
-       <signature/>
      </assignedEntity>
    </legalAuthenticator>
    <componentOf typeCode="COMP">
@@ -83,7 +82,7 @@
                <postalCode>{{presidio.cap}}</postalCode>
                <streetName>{{presidio.indirizzo}}</streetName>
                <houseNumber>{{presidio.civico}}</houseNumber>
-               <telecom>{{presidio.telefono}}</telecom>
+               <!--telecom></telecom-->
                <country>Italia</country>
              </addr>
            </serviceProviderOrganization>

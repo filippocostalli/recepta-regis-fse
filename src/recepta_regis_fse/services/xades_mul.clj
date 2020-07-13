@@ -5,6 +5,7 @@
     (java.lang String)
     (java.io File ByteArrayOutputStream)
     (java.security KeyStore$PasswordProtection)
+    (org.apache.xml.security.c14n Canonicalizer)
     (eu.europa.esig.dss.model DSSDocument InMemoryDocument ToBeSigned SignatureValue FileDocument)
     (eu.europa.esig.dss.enumerations DigestAlgorithm SignatureLevel SignaturePackaging)
     (eu.europa.esig.dss.validation CommonCertificateVerifier)
@@ -44,16 +45,17 @@
       (cert-file presidio-id)
       (KeyStore$PasswordProtection. (cert-pwd-arr presidio-id))))
 
-(defn ^XAdESSignatureParameters xades-params [presidio-id]
+(defn ^XAdESSignatureParameters xades-params [private-key]
   (let [par (XAdESSignatureParameters.)]
     (doto par
       (.setSignatureLevel SignatureLevel/XAdES_BASELINE_B)
       (.setSignaturePackaging SignaturePackaging/ENVELOPED)
       (.setDigestAlgorithm DigestAlgorithm/SHA256)
-      (.setSigningCertificate (.getCertificate (private-key presidio-id)))
-      (.setCertificateChain (.getCertificateChain (private-key presidio-id)))
+      (.setSigningCertificate (.getCertificate private-key))
+      (.setCertificateChain (.getCertificateChain private-key))
       (.setXPathLocationString "//*[local-name() = 'signatureCode']")
-      (.setXPathElementPlacement  XAdESSignatureParameters$XPathElementPlacement/XPathAfter))))
+      (.setXPathElementPlacement  XAdESSignatureParameters$XPathElementPlacement/XPathAfter)
+      (.setSignedInfoCanonicalizationMethod Canonicalizer/ALGO_ID_C14N11_WITH_COMMENTS))))
 
 (def not-nil? (complement nil?))
 
@@ -63,7 +65,7 @@
         ;;^DSSDocument doc-to-sign (file->dssdoc s)
         ^Pkcs12SignatureToken sign-token (signing-token presidio-id)
         ^DSSPrivateKeyEntry private-key   (.. sign-token getKeys (get 0))
-        ^XAdESSignatureParameters sign-params (xades-params presidio-id)
+        ^XAdESSignatureParameters sign-params (xades-params private-key)
         ^XAdESService sign-service (XAdESService. (CommonCertificateVerifier.))
         ^ToBeSigned data-to-sign (. sign-service getDataToSign doc-to-sign sign-params)
         ^SignatureValue signature-value (. sign-token sign data-to-sign (.getDigestAlgorithm sign-params) private-key)

@@ -58,11 +58,39 @@
      (spit filename mycda_signed)
      (is (.exists (io/as-file filename)))))
 
+
+(deftest cda-sign-documento-medir
+  (let [cda-test (slurp "E:/tmp/Recepta/Regis/Fse/test-cda/document.xml")
+        mycda_signed (xades/sign cda-test)
+        filename "E:/tmp/Recepta/Regis/Fse/test-cda/document_signed.xml"]
+     (spit filename mycda_signed)
+     (is (.exists (io/as-file filename)))))
+
 (deftest cda-sign-mul
   (let [cartelle (database/get-cartelle)
         cartella (first cartelle)
         mycda (hl7cda/cartella->cda cartella)
         mycda_signed (xades-mul/sign mycda (:cartella_presidio_id cartella))
         filename (str "E:/tmp/Recepta/Regis/Fse/test-cda/test_" (:cartella_id cartella) "_" (:cartella_barcode cartella) "_signedmul.xml")]
+     (spit filename mycda_signed)
+     (is (.exists (io/as-file filename)))))
+
+
+(deftest cda-sign-mul-sanluri
+  (let [cartelle (database/get-cartelle-sanluri)
+        cartella (first cartelle)
+        mycda (hl7cda/cartella->cda cartella)
+        mycda_signed (xades-mul/sign mycda (:cartella_presidio_id cartella))
+        filename (str "E:/tmp/Recepta/Regis/Fse/test-cda/test_" (:cartella_id cartella) "_" (:cartella_barcode cartella) "_signed06.xml")]
+     (spit filename mycda_signed)
+     (is (.exists (io/as-file filename)))))
+
+
+(deftest cda-sign-mul-sirai
+  (let [cartelle (database/get-cartelle-sirai)
+        cartella (first cartelle)
+        mycda (hl7cda/cartella->cda cartella)
+        mycda_signed (xades-mul/sign mycda (:cartella_presidio_id cartella))
+        filename (str "E:/tmp/Recepta/Regis/Fse/test-cda/test_" (:cartella_id cartella) "_" (:cartella_barcode cartella) "_signed07.xml")]
      (spit filename mycda_signed)
      (is (.exists (io/as-file filename)))))

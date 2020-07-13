@@ -5,11 +5,13 @@
     (java.lang String)
     (java.io File ByteArrayOutputStream)
     (java.security KeyStore$PasswordProtection)
+    (org.apache.xml.security.c14n Canonicalizer)
     (eu.europa.esig.dss.model DSSDocument InMemoryDocument ToBeSigned SignatureValue FileDocument)
     (eu.europa.esig.dss.enumerations DigestAlgorithm SignatureLevel SignaturePackaging)
     (eu.europa.esig.dss.validation CommonCertificateVerifier)
     (eu.europa.esig.dss.token Pkcs12SignatureToken DSSPrivateKeyEntry)
     (eu.europa.esig.dss.xades XAdESSignatureParameters)
+    (eu.europa.esig.dss.xades XAdESSignatureParameters$XPathElementPlacement)
     (eu.europa.esig.dss.xades.signature XAdESService)))
 
 (defn ^InMemoryDocument string->dssdoc [s]
@@ -44,7 +46,8 @@
       (.setSigningCertificate (.getCertificate private-key))
       (.setCertificateChain (.getCertificateChain private-key))
       (.setXPathLocationString "//*[local-name() = 'signatureCode']")
-      (.setXPathElementPlacement  XAdESSignatureParameters$XPathElementPlacement/XPathAfter))))
+      (.setXPathElementPlacement  XAdESSignatureParameters$XPathElementPlacement/XPathAfter)
+      (.setSignedInfoCanonicalizationMethod Canonicalizer/ALGO_ID_C14N11_WITH_COMMENTS))));
 
 (def not-nil? (complement nil?))
 

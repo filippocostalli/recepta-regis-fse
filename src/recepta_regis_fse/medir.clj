@@ -2,7 +2,8 @@
   (:require
     [recepta-regis-fse.services.database :as database]
     [recepta-regis-fse.services.hl7cda :as hl7cda]
-    [recepta-regis-fse.services.xades-mul :as xades-mul]))
+    [recepta-regis-fse.services.xades-mul :as xades-mul]
+    [cambium.core :as log]))
 
 (defn cartella->cdasigned
   [cartella]
@@ -18,15 +19,14 @@
       :cartella_hl7cda (cartella->cdasigned cartella)
       :cartella_statoinviomedir 1}
      (catch Exception e
+       (log/error (str "Errore creazione-forma hl7 cda. cartella=" (:cartella_id cartella) ", messaggio=" (.getMessage e)))
        {:cartella_id (:cartella_id cartella)
         :cartella_statoinviomedir 2
         :cartella_messaggiomedir (.getMessage e)})))
 
-(defn job
-  ([] (->> (database/get-cartelle)
-          (map #(cartellain->cartellaout))
-          (database/update-cartelle!)))
-  ([limit] (->> (database/get-cartelle)
-                (take limit)
-                (map #(cartellain->cartellaout))
-                (database/update-cartelle!))))
+(defn processa-cartelle
+  [n]
+  (->> (database/get-cartelle)
+       (take n)
+       (map cartellain->cartellaout)
+       (database/update-cartelle!)))

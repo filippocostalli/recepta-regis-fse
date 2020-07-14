@@ -32,12 +32,6 @@
     (println cdatime)))
 
 
-(deftest get-cartella
-   (let [cartelle (database/get-cartelle)
-         cartella (first cartelle)]
-     (is (= "Y0W000WM7" (:cartella_barcode cartella)))
-     (is (= 128796 (:cartella_id cartella)))))
-
 
 (deftest cda-composition
    (let [cartelle (database/get-cartelle)
@@ -45,7 +39,6 @@
          mycda (hl7cda/cartella->cda cartella)
          filename (str "E:/tmp/Recepta/Regis/Fse/test-cda/test_" (:cartella_id cartella) "_" (:cartella_barcode cartella) ".xml")]
      (spit filename mycda)
-     (is (= 128796 (:cartella_id cartella)))
      (is (.exists (io/as-file filename)))))
      ;;(is (s/include? mycda))))
 

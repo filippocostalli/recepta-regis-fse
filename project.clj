@@ -16,8 +16,13 @@
                  [eu.europa.ec.joinup.sd-dss/dss-utils-apache-commons "5.6"]
                  [eu.europa.ec.joinup.sd-dss/dss-model "5.6"]
                  [eu.europa.ec.joinup.sd-dss/dss-token "5.6"]
-                 [eu.europa.ec.joinup.sd-dss/dss-xades "5.6"]]
+                 [eu.europa.ec.joinup.sd-dss/dss-xades "5.6"]
+                 [jarohen/chime "0.3.2"]
+                 [cambium/cambium.core "0.9.3"]
+                 [cambium/cambium.codec-simple "0.9.3"]
+                 [cambium/cambium.logback.core "0.4.3"]]
   :repositories {"cefdigital cefdigital" "https://ec.europa.eu/cefdigital/artifact/content/repositories/esignaturedss/"}
   :java-source-paths ["src/java" "test/java"]
   :resource-paths ["resources" "resources/bcprov-jdk15on-1.64.jar" "resources/bcpkix-jdk15on-1.64.jar"]
+  :main recepta-regis-fse.core
   :repl-options {:init-ns recepta-regis-fse.core})

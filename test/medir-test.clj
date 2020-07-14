@@ -23,7 +23,7 @@
          cartella-out (medir/cartellain->cartellaout cartella-in)
          filename (str "E:/tmp/Recepta/Regis/Fse/test-cda/test_" (:cartella_id cartella-in) "_" (:cartella_barcode cartella-in) "_signed_medir2.xml")]
      (is (not-nil? cartella-out))
-     (println (str "***********" (:cartella_messaggiomedir cartella-out)))
+     ;;(println (str "***********" cartella-out))
      (is (= (:cartella_id cartella-out) (:cartella_id cartella-in)))
      (is (= (:cartella_statoinviomedir cartella-out) 1))
      (spit filename (:cartella_hl7cda cartella-out))
@@ -31,5 +31,6 @@
 
 
 (deftest medir-job-test_
-  (medir/job 3)
-  (is true))
+  (let [testate (medir/processa-cartelle 3)]
+    (println testate)
+    (is (= 5 5))))

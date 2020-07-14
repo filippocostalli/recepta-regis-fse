@@ -24,5 +24,6 @@
   :repositories {"cefdigital cefdigital" "https://ec.europa.eu/cefdigital/artifact/content/repositories/esignaturedss/"}
   :java-source-paths ["src/java" "test/java"]
   :resource-paths ["resources" "resources/bcprov-jdk15on-1.64.jar" "resources/bcpkix-jdk15on-1.64.jar"]
+  :aot  [recepta-regis-fse.core]
   :main recepta-regis-fse.core
   :repl-options {:init-ns recepta-regis-fse.core})

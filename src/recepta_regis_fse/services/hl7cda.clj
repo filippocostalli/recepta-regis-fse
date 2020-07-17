@@ -4,23 +4,15 @@
     [selmer.parser :as parser]))
 
 (def presidio-1 {:id 1 :codice "200098" :descrizione "P.O. SIRAI"
-                 :citta "Carbonia" :indirizzo "Via dell'Ospedale" :civico "" :cap "09013" :asl "ASSL CARBONIA" :id-marno-asl "200107"})
+                 :citta "Carbonia" :indirizzo "Via dell'Ospedale" :civico "" :cap "09013" :asl "ASSL CARBONIA" :id-marno-asl "SMARNO07A07B745H"})
 (def presidio-5 {:id 5 :codice "200034" :descrizione "P.O. N.S. DI BONARIA"
-                 :citta "San Gavino Monreale (SU)" :indirizzo "Via Roma" :civico "" :cap "09037" :asl "ASSL SANLURI" :id-marno-asl "200106"})
+                 :citta "San Gavino Monreale (SU)" :indirizzo "Via Roma" :civico "" :cap "09037" :asl "ASSL SANLURI" :id-marno-asl "SMARNO06A06H974N"})
 (def presidio-2 {:id 2 :codice "200029" :descrizione "P.O. SANTA BARBARA"
-                 :citta "Iglesias (SU)" :indirizzo "Via S. Leonardo" :civico "1" :cap "09016" :asl "ASSL CARBONIA" :id-marno-asl "200107"})
+                 :citta "Iglesias (SU)" :indirizzo "Via S. Leonardo" :civico "1" :cap "09016" :asl "ASSL CARBONIA" :id-marno-asl "SMARNO07A07B745H"})
 (def presidio-3 {:id 3 :codice "200030" :descrizione "P.O. CTO"
-                 :citta "Iglesias (SU)" :indirizzo "Via R. Cattaneo" :civico "52" :cap "09016" :asl "ASSL CARBONIA" :id-marno-asl "200107"})
+                 :citta "Iglesias (SU)" :indirizzo "Via R. Cattaneo" :civico "52" :cap "09016" :asl "ASSL CARBONIA" :id-marno-asl "SMARNO07A07B745H"})
 
 (def presidi {:1 presidio-1, :2 presidio-2, :3 presidio-3 :5 presidio-5})
-
-(defn clean-codice-reparto [codice]
-  (case codice
-    9.01 "0901"
-    8.01 "0801"
-    801 "0801"
-    901 "0901"
-    codice))
 
 (defn date->cdatime [date]
   (str

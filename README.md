@@ -7,11 +7,10 @@ A Clojure library designed for creating and signing (Xades) HL7-CDA for italian 
 - hl7cda.js creates the CDA from a record. It uses [Selmer](https://github.com/yogthos/Selmer) as a template engine;
 ## Usage
 
-FIXME
 
 ## License
 
-Copyright © 2021 FIXME
+Copyright © 2021 Filippo Costalli
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at

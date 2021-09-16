@@ -1,225 +1,26 @@
-REPL Instructions
-
-Code can be entered at the bottom and executed by pressing shift+enter.
-
-Try it now by typing (+ 1 1) in the bottom section and pressing shift+enter.
-
-Working in another Clojure file and sending forms to the REPL is the most efficient way to work. Use the following key bindings to send code to the REPL. See the settings for more keybindings.
-
-ctrl-alt-, then b
-Execute block. Finds the block of Clojure code your cursor is in and executes that.
-
-ctrl-alt-, s
-Executes the selection. Sends the selected text to the REPL.
-
-You can disable this help text in the settings.
-Starting REPL with lein in E:\lein_workspace\clojure-challenge
-nREPL server started on port 54796 on host 127.0.0.1 - nrepl://127.0.0.1:54796
-Refreshing code...
-No user namespace defined. Defaulting to clojure.tools.namespace.repl/refresh.
-
-clojure.tools.namespace.repl not available. Add proto-repl in your project.clj as a dependency to allow refresh. See https://clojars.org/proto-repl
-Refresh Warning: Execution error (IllegalArgumentException) at user/eval1457 (form-init7116921607710094560.clj:1).
-No such namespace: clojure.tools.namespace.repl
-Refresh Warning: Execution error (IllegalArgumentException) at user/eval1457 (form-init7116921607710094560.clj:1).
-No such namespace: clojure.tools.namespace.repl
-(defn occur [coll p]
-  (loop [result #{}
-         par coll
-         counter 0]
-    (if (= 0 (count par))
-      result
-      (recur
-        (if  (= (first par)) p
-           (conj result counter)
-           result)
-        (rest par)
-        (+ 1 counter)))))
-Syntax error compiling if at (issue_418.clj:11:9).
-Too many arguments to if
-(defn occur [coll p]
-  (loop [result #{}
-         par coll
-         counter 0]
-    (if (= 0 (count par))
-      result
-      (recur
-        (if  (= (first par) p)
-           (conj result counter)
-           result)
-        (rest par)
-        (+ 1 counter)))))
-user=>
-#'user/occur
-(distinct "aloa")
-user=>
-("a" "l" "o")
-(distint '(1 2 3 1 5 7 99 2))
-Syntax error compiling at (issue_418.clj:1:5).
-Unable to resolve symbol: distint in this context
-(distinct '(1 2 3 1 5 7 99 2))
-user=>
-(1 2 3 5 7 99)
-(distinct [1 2 3 1 5 7 99 2])
-user=>
-(1 2 3 5 7 99)
-(defn occur [coll p]
-  (loop [result #{}
-         par coll
-         counter 0]
-    (if (= 0 (count par))
-      result
-      (recur
-        (if  (= (first par) p)
-           (conj result counter)
-           result)
-        (rest par)
-        (+ 1 counter)))))
-user=>
-#'user/occur
-(occur [1 2 1 2 1] 1)
-user=>
-#{0 4 2}
-(defn occur [coll p]
-  '(p
-     (loop [result #{}
-            par coll
-            counter 0]
-       (if (= 0 (count par))
-         result
-         (recur
-           (if  (= (first par) p)
-              (conj result counter)
-              result)
-           (rest par)
-           (+ 1 counter))))))
-user=>
-#'user/occur
-(occur [1 2 1 2 1] 1)
-user=>
-(p
- (loop
-  [result #{} par coll counter 0]
-  (if
-   (= 0 (count par))
-   result
-   (recur
-    (if (= (first par) p) (conj result counter) result)
-    (rest par)
-    (+ 1 counter)))))
-(defn occur [coll p]
-  [p
-    (loop [result #{}
-           par coll
-           counter 0]
-      (if (= 0 (count par))
-        result
-        (recur
-          (if  (= (first par) p)
-             (conj result counter)
-             result)
-          (rest par)
-          (+ 1 counter))))])
-user=>
-#'user/occur
-(occur [1 2 1 2 1] 1)
-user=>
-[1 #{0 4 2}]
-(defn index-map [s]
-  (->> (distinct s)
-       (map #(partial (occur s %)))))
-user=>
-#'user/index-map
-(index-map [1 2 1 2 1])
-user=>
-([1 #{0 4 2}] [2 #{1 3}])
-(defn index-map [s]
-  (->> (distinct s)
-       (map #(partial (occur s %)))
-       (flatten)))
-user=>
-#'user/index-map
-(index-map [1 2 1 2 1])
-user=>
-(1 #{0 4 2} 2 #{1 3})
-(index-map [1 1 1])
-user=>
-(1 #{0 1 2})
-(defn occur [coll p]
-  {p
-    (loop [result #{}
-           par coll
-           counter 0]
-      (if (= 0 (count par))
-        result
-        (recur
-          (if  (= (first par) p)
-             (conj result counter)
-             result)
-          (rest par)
-          (+ 1 counter))))})
-user=>
-#'user/occur
-(index-map [1 1 1])
-user=>
-({1 #{0 1 2}})
-(index-map [1 2 1 2 1])
-user=>
-({1 #{0 4 2}} {2 #{1 3}})
-(defn index-map [s]
-  (->> (distinct s)
-       (map #(partial (occur s %)))
-       (flatten)
-       (first)))
-user=>
-#'user/index-map
-(index-map [1 2 1 2 1])
-user=>
-{1 #{0 4 2}}
-(defn index-map [s]
-  (->> (distinct s)
-       (map #(partial (occur s %)))))
-user=>
-#'user/index-map
-(index-map [1 2 1 2 1])
-user=>
-({1 #{0 4 2}} {2 #{1 3}})
-(defn index-map [s]
-  (->> (distinct s)
-       (map #(partial (occur s %)))
-       (flatten)))
-user=>
-#'user/index-map
-(index-map [1 2 1 2 1])
-user=>
-({1 #{0 4 2}} {2 #{1 3}})
-(defn index-map [s]
-  (->> (distinct s)
-       (map #(partial (occur s %)))
-       (into (sorted-map))))
-user=>
-#'user/index-map
-(index-map [1 2 1 2 1])
-user=>
-{1 #{0 4 2}, 2 #{1 3}}
-(index-map [1 1 1])
-user=>
-{1 #{0 1 2}}
-(index-map [1 2 3]) 
-user=>
-{1 #{0}, 2 #{1}, 3 #{2}}
-(index-map ['a' 'b' 'c']) 
-user=>
-{c' #{2}, b' #{1}, a' #{0}}
-(index-map "abc") 
-user=>
-{"a" #{0}, "b" #{1}, "c" #{2}}
-(index-map "alloracazzo") 
-user=>
-{"z" #{9 8},
- "a" #{0 7 5},
- "r" #{4},
- "l" #{1 2},
- "o" #{3 10},
- "c" #{6}}
+(defn get-documenti-unisincro [cartella_id]
+  (->> cartella_id
+    (documento/select-by-cartella db-regis) ;;kebab-case
+    (pmap #(doc->unisincro %))
+    (count)))
+esignum-cco.services.unisincro=>
+#'esignum-cco.services.unisincro/get-documenti-unisincro
+(get-documenti-unisincro 344223)
+esignum-cco.services.unisincro=>
+152
+(time (get-documenti-unisincro 344223))
+"Elapsed time: 6014.0109 msecs"
+esignum-cco.services.unisincro=>
+152
+(defn get-documenti-unisincro [cartella_id]
+  (->> cartella_id
+    (documento/select-by-cartella db-regis) ;;kebab-case
+    (map #(doc->unisincro %))
+    (count)))
+esignum-cco.services.unisincro=>
+#'esignum-cco.services.unisincro/get-documenti-unisincro
+(time (get-documenti-unisincro 344223))
+"Elapsed time: 39613.5886 msecs"
+esignum-cco.services.unisincro=>
+152
 --------------------

@@ -1,4 +1,4 @@
-{:cco-cda-template "hl7cda_cco_template.xml"
+{:cco-cda-template "hl7cda_cco2_template_v2.xml"
  :cert-pwd "Sfw020mrn"
  :cert-path "E:/tmp/Recepta/Regis/Fse/certificati_medir_marno/SWmarnoASSLSanluri.pfx"
  :certificates { :1 {:cert-pwd "Sfw020mrn"

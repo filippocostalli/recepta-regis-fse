@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="CDA.xsl"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:voc="urn:hl7-org:v3/voc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 CDA.xsd">
+	<realmCode code="IT" />
+	<typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040" />
+	<templateId root="2.16.840.1.113883.2.9.10.2.18" extension="ITPRF_CCO-001" />
+	<id root="2.16.840.1.113883.2.9.2.200.4.4" extension="{{cartella_barcode}}_{{cartella_id}}" assigningAuthorityName="Regione Sardegna" />
+	<code code="46106-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.19" displayName="Study Report Diagnstic Imaging " />
+	<title>CDA Cartella Clinica Ospedaliera</title>
+	<effectiveTime value="{{data-compilazione}}" />
+	<confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" codeSystemName="Confidenziality" />
+	<languageCode code="it-IT" />
+	<setId root="2.16.840.1.113883.2.9.2.200.4.4" extension="{{cartella_barcode}}_{{id-prec}}" assigningAuthorityName="Regione Sardegna" />
+	<versionNumber value="1" />
+	<recordTarget>
+		<patientRole>
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="{{cartella_codicefiscale}}" />
+			<patient>
+				<name>
+					<given>{{cartella_nome}}</given>
+					<family>{{cartella_cognome}}</family>
+				</name>
+				<administrativeGenderCode code="{cartella_genere}}" codeSystem="2.16.840.1.113883.5.1" />
+			</patient>
+		</patientRole>
+	</recordTarget>
+	<author>
+		<time value="{{data-produzione}}" />
+		<assignedAuthor>
+			<id root="2.16.840.1.113883.2.9.2.200.4.5" extension="{{presidio.id-marno-asl}} {{presidio.asl}}" />
+			<assignedPerson>
+				<name>
+					<given>RECEPTA -SISTEMA DIGITALIZZAZIONE CARTELLE CLINICHE</given>
+					<family>ATS - {{presidio.asl}}</family>
+				</name>
+			</assignedPerson>
+		</assignedAuthor>
+	</author>
+	<custodian>
+		<assignedCustodian>
+			<representedCustodianOrganization>
+				<id root="2.16.840.1.113883.2.9.4.1.2" extension="{{presidio.codice}}" />
+				<name>{{presidio.descrizione}}</name>
+				<addr>
+					<city>{{presidio.citta}}</city>
+					<postalCode>{{presidio.cap}}</postalCode>
+					<streetName>{{presidio.indirizzo}}</streetName>
+					<houseNumber>{{presidio.civico}}</houseNumber>
+					<country>Italia</country>
+				</addr>
+			</representedCustodianOrganization>
+		</assignedCustodian>
+	</custodian>
+	<legalAuthenticator>
+		<time value="{{data-firma}}"/>
+		<signatureCode code="S"/>
+		<assignedEntity>
+			<id root="2.16.840.1.113883.2.9.2.200.4.5" extension="{{presidio.id-marno-asl}}" />
+			<assignedPerson>
+				<name>
+					<given>RECEPTA - SISTEMA DIGITALIZZAZIONE CARTELLE CLINICHE</given>
+					<family>ATS - {{presidio.asl}}</family>
+				</name>
+			</assignedPerson>
+		</assignedEntity>
+	</legalAuthenticator>
+	<componentOf typeCode="COMP">
+		<encompassingEncounter>
+			<id root="2.16.840.1.113883.2.9.2.{{presidio.codice}}.4.6" extension="{{cartella_sdo_codice}}" assigningAuthorityName="Presidio Ospedaliero" displayable="true"/>
+			<effectiveTime>
+				<low  value="{{data-ricovero}}"/>
+			</effectiveTime>
+			<location>
+				<healthCareFacility>
+					<code code="{{cartella_reparto_codice}}" codeSystem="2.16.840.1.113883.2.9.6.1.17" codeSystemName="Discipline AFO" displayName="{{cartella_reparto_descrizione}}"/>
+					<serviceProviderOrganization>
+						<id root="2.16.840.1.113883.2.9.4.1.2" extension="{{presidio.codice}}" assigningAuthorityName="SSN-MIN SALUTE"/>
+						<name>{{presidio.descrizione}}</name>
+						<addr>
+							<city>{{presidio.citta}}</city>
+							<postalCode>{{presidio.cap}}</postalCode>
+							<streetName>{{presidio.indirizzo}}</streetName>
+							<houseNumber>{{presidio.civico}}</houseNumber>
+							<country>Italia</country>
+						</addr>
+					</serviceProviderOrganization>
+				</healthCareFacility>
+			</location>
+		</encompassingEncounter>
+	</componentOf>
+	<component>
+		<structuredBody>
+			<component typeCode="COMP">
+				<section classCode="DOCSECT" moodCode="EVN">
+					<code code="46106-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Cartella Clinica Ospedaliera"/>
+					<title>Accesso alla Cartella Clinica Ospedaliera</title>
+					<text>
+						<linkHtml href="https://regis-sso.marnonet.it/SAML2/sardegnaview?risorsa={{cartella_id}}">Seleziona questo link per accedere alla cartella</linkHtml>
+					</text>
+				</section>
+			</component>
+		</structuredBody>
+	</component>
+</ClinicalDocument>

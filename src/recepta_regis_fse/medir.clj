@@ -30,3 +30,11 @@
        (take n)
        (map cartellain->cartellaout)
        (database/update-cartelle!)))
+
+
+(defn processa-cartella [cartella-id]
+  (->> (database/get-cartella cartella-id)
+      first
+      ;;(hl7cda/cartella->cda)
+      (cartella->cdasigned)
+      (spit (str "E:/tmp/Recepta/Regis/Fse/test-cda/v2/" cartella-id ".xml"))))

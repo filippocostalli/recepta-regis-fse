@@ -2,6 +2,8 @@
 
 A Clojure library designed for creating and signing (Xades) HL7-CDA for italian medical records.
 
+- The sign engine is xades_mul.clj. It is a Clojure wrapper for the Digital Signature Service (DSS) libraries. You can find the project [here](https://github.com/esig/dss)
+
 ## Usage
 
 FIXME

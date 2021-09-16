@@ -35,3 +35,4 @@
 
 (defn update-cartelle! [cartelle]
    (doseq [cartella cartelle] (update-cartella!  cartella)))
+ 

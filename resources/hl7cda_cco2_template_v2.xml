@@ -10,7 +10,7 @@
 	<effectiveTime value="{{data-compilazione}}" />
 	<confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" codeSystemName="Confidenziality" />
 	<languageCode code="it-IT" />
-	<setId root="2.16.840.1.113883.2.9.2.200.4.4" extension="{{cartella_barcode}}_{{id-prec}}" assigningAuthorityName="Regione Sardegna" />
+	<setId root="2.16.840.1.113883.2.9.2.200.4.4" extension="{{cartella_barcode}}_{{cartella_id}}" assigningAuthorityName="Regione Sardegna" />
 	<versionNumber value="1" />
 	<recordTarget>
 		<patientRole>
@@ -20,14 +20,14 @@
 					<given>{{cartella_nome}}</given>
 					<family>{{cartella_cognome}}</family>
 				</name>
-				<administrativeGenderCode code="{cartella_genere}}" codeSystem="2.16.840.1.113883.5.1" />
+				<administrativeGenderCode code="{{cartella_genere}}" codeSystem="2.16.840.1.113883.5.1" />
 			</patient>
 		</patientRole>
 	</recordTarget>
 	<author>
 		<time value="{{data-produzione}}" />
 		<assignedAuthor>
-			<id root="2.16.840.1.113883.2.9.2.200.4.5" extension="{{presidio.id-marno-asl}} {{presidio.asl}}" />
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="{{presidio.id-marno-asl}}" />
 			<assignedPerson>
 				<name>
 					<given>RECEPTA -SISTEMA DIGITALIZZAZIONE CARTELLE CLINICHE</given>
@@ -55,7 +55,7 @@
 		<time value="{{data-firma}}"/>
 		<signatureCode code="S"/>
 		<assignedEntity>
-			<id root="2.16.840.1.113883.2.9.2.200.4.5" extension="{{presidio.id-marno-asl}}" />
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="{{presidio.id-marno-asl}}" />
 			<assignedPerson>
 				<name>
 					<given>RECEPTA - SISTEMA DIGITALIZZAZIONE CARTELLE CLINICHE</given>

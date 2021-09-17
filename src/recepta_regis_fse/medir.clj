@@ -31,7 +31,6 @@
        (map cartellain->cartellaout)
        (database/update-cartelle!)))
 
-
 (defn processa-cartella [cartella-id]
   (->> (database/get-cartella cartella-id)
       (first)

@@ -16,4 +16,5 @@
             :host "localhost"
             :user "postgres"
             :password "marno"
-            :sslfactory "org.postgresql.ssl.NonValidatingFactory"}}
+            :sslfactory "org.postgresql.ssl.NonValidatingFactory"}
+ :codice-operatore "000000001024"}

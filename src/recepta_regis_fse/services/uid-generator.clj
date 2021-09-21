@@ -6,6 +6,11 @@
 
 (def characters "123456789abcdefghijklmnopqrstuvwyxzABCDEFGHIJKLMNOPQRSTUVWYXZ")
 
+(def conversion-table
+  (zipmap
+   characters
+   (range)))
+
 (defn base10->base61 [^Long number]
   (loop [num number
          acc []]
